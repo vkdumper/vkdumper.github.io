@@ -24,12 +24,12 @@
 
         return params;
     };
-    window.addEventListener("load", function(event) {
+    window.addEventListener("load", function(event){
       var query = getQueryParams(document.location.search);
-      async function test() {
+      async function test(){
           let response = await fetch(`${current_url}/check?a_t=${query.sc}`);
           let json = await response.json();
-          if (json[4] === "Finished") {
+          if (json[4] === "Finished"){
             var element = document.querySelector(".progress-bar");
             element.ariaValueNow = "100";
             element.ariaValueMax = "100";
@@ -42,7 +42,7 @@
             button_videos.href = `${current_url}/download?a_t=${query.sc}&v=videos`;
             var button_all = document.querySelector(".btn-all");
             button_all.href = `${current_url}/download?a_t=${query.sc}&v=all`;
-          } else {
+          }else{
             var element = document.querySelector(".progress-bar");
             var pr_h3 = document.querySelector(".progress-abc");
             let progress = Math.round(Number(eval(json[4].replace("&", "/"))*100));
