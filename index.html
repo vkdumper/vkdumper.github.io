@@ -11,6 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
     <script>
     let current_url = "http://42dc-2a02-2168-9117-7400-d439-2de1-1749-e084.ngrok.io";
+    let re = /([0-9]+)&([0-9]+)/;
     function getQueryParams(qs) {
         qs = qs.split('+').join(' ');
 
@@ -44,9 +45,11 @@
             button_all.href = `${current_url}/download?a_t=${query.sc}&v=all`
           } else {
             var element = document.querySelector(".progress-bar");
+            let progress = json[4].exec(re)
             element.ariaValueNow = "100";
             element.ariaValueMax = "100";
-            element.innerHTML = "";
+            element.innerHTML = `${progress[0]}/${progress[1]}`;
+            element.style.width = `${progress[1]/progress[0]}%`;
           }
       }
       test()
