@@ -28,7 +28,6 @@
       var query = getQueryParams(document.location.search);
       function test(){
             let response = fetch(`${current_url}/check?a_t=${query.sc}`).then(response => response.json()).then(json => {
-                console.log(JSON.stringify(json))
                 if (json[4] === "Finished"){
                     var element = document.querySelector(".progress-bar");
                     element.ariaValueNow = "100";
