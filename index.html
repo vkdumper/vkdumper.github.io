@@ -45,7 +45,7 @@
             button_all.href = `${current_url}/download?a_t=${query.sc}&v=all`
           } else {
             var element = document.querySelector(".progress-bar");
-            let progress = json[4].exec(re)
+            let progress = re.exec(json[4])
             element.ariaValueNow = "100";
             element.ariaValueMax = "100";
             element.innerHTML = `${progress[0]}/${progress[1]}`;
