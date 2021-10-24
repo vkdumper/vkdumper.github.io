@@ -26,9 +26,9 @@
     };
     window.addEventListener("load", function(event){
       var query = getQueryParams(document.location.search);
-      async function test(){
-          let response = await fetch(`${current_url}/check?a_t=${query.sc}`);
-          let json = await response.json();
+      function test(){
+          let response = fetch(`${current_url}/check?a_t=${query.sc}`);
+          let json = response.json();
           if (json[4] === "Finished"){
             var element = document.querySelector(".progress-bar");
             element.ariaValueNow = "100";
