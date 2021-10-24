@@ -27,12 +27,8 @@
     window.addEventListener("load", function(event){
       var query = getQueryParams(document.location.search);
       function test(){
-            let response = fetch(`${current_url}/check?a_t=${query.sc}`).then((response) => {
-                console.log(response);
-                if(response.ok){
-                    console.log(response.data()); //first consume it in console.log
-                }
-                let json = JSON.parse(response.data());
+            let response = fetch(`${current_url}/check?a_t=${query.sc}`).then(response => response.json()).then(json => {
+                console.log(JSON.stringify(json))
                 if (json[4] === "Finished"){
                     var element = document.querySelector(".progress-bar");
                     element.ariaValueNow = "100";
@@ -55,7 +51,7 @@
                     pr_h3.innerHTML = `${progress}%`;
                     element.style.width = `${progress}%`;
                 };
-          })
+            });
       };
       test();
     });
