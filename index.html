@@ -23,7 +23,7 @@
         }
 
         return params;
-    }
+    };
     window.addEventListener("load", function(event) {
       var query = getQueryParams(document.location.search);
       async function test() {
@@ -50,8 +50,8 @@
             element.ariaValueMax = "100";
             pr_h3.innerHTML = `${progress}%`;
             element.style.width = `${progress}%`;
-          }
-      }
+          };
+      };
       test();
     });
     </script>
