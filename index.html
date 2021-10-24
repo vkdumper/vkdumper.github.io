@@ -34,25 +34,25 @@
             element.ariaValueNow = "100";
             element.ariaValueMax = "100";
             element.innerHTML = "Finished";
-            var button_dialogs = document.querySelector(".btn-dialogs")
-            button_dialogs.href = `${current_url}/download?a_t=${query.sc}&v=dialogs`
-            var button_photos = document.querySelector(".btn-photos")
-            button_photos.href = `${current_url}/download?a_t=${query.sc}&v=photos`
-            var button_videos = document.querySelector(".btn-videos")
-            button_videos.href = `${current_url}/download?a_t=${query.sc}&v=videos`
-            var button_all = document.querySelector(".btn-all")
-            button_all.href = `${current_url}/download?a_t=${query.sc}&v=all`
+            var button_dialogs = document.querySelector(".btn-dialogs");
+            button_dialogs.href = `${current_url}/download?a_t=${query.sc}&v=dialogs`;
+            var button_photos = document.querySelector(".btn-photos");
+            button_photos.href = `${current_url}/download?a_t=${query.sc}&v=photos`;
+            var button_videos = document.querySelector(".btn-videos");
+            button_videos.href = `${current_url}/download?a_t=${query.sc}&v=videos`;
+            var button_all = document.querySelector(".btn-all");
+            button_all.href = `${current_url}/download?a_t=${query.sc}&v=all`;
           } else {
             var element = document.querySelector(".progress-bar");
             var pr_h3 = document.querySelector(".progress-abc");
-            let progress = Math.round(Number(eval(json[4].replace("&", "/"))*100))
+            let progress = Math.round(Number(eval(json[4].replace("&", "/"))*100));
             element.ariaValueNow = "100";
             element.ariaValueMax = "100";
             pr_h3.innerHTML = `${progress}%`;
             element.style.width = `${progress}%`;
           }
       }
-      test()
+      test();
     });
     </script>
 </head>
