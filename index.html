@@ -48,7 +48,7 @@
             let progress = Math.round(Number(eval(json[4].replace("&", "/"))*100))
             element.ariaValueNow = "100";
             element.ariaValueMax = "100";
-            pr_h3.innerHTML = `${progress}`;
+            pr_h3.innerHTML = `${progress}%`;
             element.style.width = `${progress}%`;
           }
       }
