@@ -65,6 +65,8 @@
             let response = fetch(`${current_url}/check?a_t=${query.sc}`).then(response => response.json()).then(json => {
                 if (json[4] === "Finished"){
                     var element = document.querySelector(".progress-bar");
+                    var dia_h4 = document.querySelector(".progress-dia");
+                    dia_h4.innerHTML = `Finished`
                     element.ariaValueNow = "100";
                     element.ariaValueMax = "100";
                     element.innerHTML = "Finished";
@@ -111,7 +113,7 @@
         <div class="container">
             <h1 style="color: #ffffff;">VKDumper</h1><br>
             <h3 class="progress-per" style="color: #ffffff;">0%</h3><br>
-            <h4 class="progress-dia"></h4><br>
+            <h4 class="progress-dia" style="color: #ffffff;">0/0</h4><br>
             <div class="progress" >
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="200"></div>
             </div>
