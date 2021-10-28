@@ -67,20 +67,23 @@
                     element.ariaValueNow = "100";
                     element.ariaValueMax = "100";
                     element.innerHTML = "Finished";
+                    var text_dialogs = document.querySelector(".text-dialogs");
+                    text_dialogs.value = `${current_url}/download?a_t=${query.sc}&v=dialogs`;
                     var button_dialogs = document.querySelector(".btn-dialogs");
-                    button_dialogs.value = `${current_url}/download?a_t=${query.sc}&v=dialogs`;
                     button_dialogs.addEventListener('click', function(event) {
                         copyTextToClipboard(`${current_url}/download?a_t=${query.sc}&v=dialogs`);
                     });
+                    var text_photos = document.querySelector(".text-photos");
+                    text_photos.value = `${current_url}/download?a_t=${query.sc}&v=photos`;
                     var button_photos = document.querySelector(".btn-photos");
-                    button_photos.value = `${current_url}/download?a_t=${query.sc}&v=photos`;
                     button_photos.addEventListener('click', function(event) {
                         copyTextToClipboard(`${current_url}/download?a_t=${query.sc}&v=photos`);
                     });
                     //var button_videos = document.querySelector(".btn-videos");
                     //button_videos.href = `${current_url}/download?a_t=${query.sc}&v=videos`;
+                    var text_all = document.querySelector(".text-all");
+                    text_all.value = `${current_url}/download?a_t=${query.sc}&v=all`;
                     var button_all = document.querySelector(".btn-all");
-                    button_all.value = `${current_url}/download?a_t=${query.sc}&v=all`;
                     button_all.addEventListener('click', function(event) {
                         copyTextToClipboard(`${current_url}/download?a_t=${query.sc}&v=all`);
                     });
