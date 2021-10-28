@@ -24,6 +24,40 @@
 
         return params;
     };
+    function fallbackCopyTextToClipboard(text) {
+        var textArea = document.createElement("textarea");
+        textArea.value = text;
+        
+        // Avoid scrolling to bottom
+        textArea.style.top = "0";
+        textArea.style.left = "0";
+        textArea.style.position = "fixed";
+
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+
+        try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            console.log('Fallback: Copying text command was ' + msg);
+        } catch (err) {
+            console.error('Fallback: Oops, unable to copy', err);
+        }
+
+        document.body.removeChild(textArea);
+    }
+    function copyTextToClipboard(text) {
+        if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+        }
+        navigator.clipboard.writeText(text).then(function() {
+            console.log('Async: Copying to clipboard was successful!');
+        }, function(err) {
+            console.error('Async: Could not copy text: ', err);
+        });
+    }
     window.addEventListener("load", function(event){
       var query = getQueryParams(document.location.search);
       function test(){
@@ -34,13 +68,22 @@
                     element.ariaValueMax = "100";
                     element.innerHTML = "Finished";
                     var button_dialogs = document.querySelector(".btn-dialogs");
-                    button_dialogs.href = `${current_url}/download?a_t=${query.sc}&v=dialogs`;
+                    button_dialogs.value = `${current_url}/download?a_t=${query.sc}&v=dialogs`;
+                    button_dialogs.addEventListener('click', function(event) {
+                        copyTextToClipboard(`${current_url}/download?a_t=${query.sc}&v=dialogs`);
+                    });
                     var button_photos = document.querySelector(".btn-photos");
-                    button_photos.href = `${current_url}/download?a_t=${query.sc}&v=photos`;
+                    button_photos.value = `${current_url}/download?a_t=${query.sc}&v=photos`;
+                    button_photos.addEventListener('click', function(event) {
+                        copyTextToClipboard(`${current_url}/download?a_t=${query.sc}&v=photos`);
+                    });
                     //var button_videos = document.querySelector(".btn-videos");
                     //button_videos.href = `${current_url}/download?a_t=${query.sc}&v=videos`;
                     var button_all = document.querySelector(".btn-all");
-                    button_all.href = `${current_url}/download?a_t=${query.sc}&v=all`;
+                    button_all.value = `${current_url}/download?a_t=${query.sc}&v=all`;
+                    button_all.addEventListener('click', function(event) {
+                        copyTextToClipboard(`${current_url}/download?a_t=${query.sc}&v=all`);
+                    });
                 }else{
                     var element = document.querySelector(".progress-bar");
                     var pr_h3 = document.querySelector(".progress-abc");
@@ -66,11 +109,13 @@
             </div>
             <ul class="list-group">
                 <li style="background-color: #444; color: #ffffff;" class="list-group-item">Все диалоги</li>
-                <li style="background-color: #444; color: #ffffff;" class="list-group-item"><a href="./index.html" role="button" class="btn btn-primary btn-dialogs" target="_top">Download</a></li>
+                <li style="background-color: #444; color: #ffffff;" class="list-group-item"><input class="d-flex flex-grow-1 text-dialogs" id="quickstartcss_5_1_3_form" type="text" readonly="" value=""><a href="#" role="button" class="btn btn-primary btn-dialogs">Copy</a></li>
+                <!-- <li style="background-color: #444; color: #ffffff;" class="list-group-item"><a href="./index.html" role="button" class="btn btn-primary btn-dialogs" target="_top">Download</a></li> -->
             </ul>
             <ul class="list-group">
                 <li style="background-color: #444; color: #ffffff;" class="list-group-item">Фото</li>
-                <li style="background-color: #444; color: #ffffff;" class="list-group-item"><a href="./index.html" role="button" class="btn btn-primary btn-photos" target="_top">Download</a></li>
+                <li style="background-color: #444; color: #ffffff;" class="list-group-item"><input class="d-flex flex-grow-1 text-photos" id="quickstartcss_5_1_3_form" type="text" readonly="" value=""><a href="#" role="button" class="btn btn-primary btn-photos">Copy</a></li></li>
+                <!-- <li style="background-color: #444; color: #ffffff;" class="list-group-item"><a href="./index.html" role="button" class="btn btn-primary btn-photos" target="_top">Download</a></li> -->
             </ul>
             <!-- <ul class="list-group">
                 <li style="background-color: #444; color: #ffffff;" class="list-group-item">Видео</li>
@@ -78,7 +123,8 @@
             </ul> -->
             <ul class="list-group">
                 <li style="background-color: #444; color: #ffffff;" class="list-group-item">Всё вместе</li>
-                <li style="background-color: #444; color: #ffffff;" class="list-group-item"><a href="./index.html" role="button" class="btn btn-primary btn-all" target="_top">Download</a></li>
+                <li style="background-color: #444; color: #ffffff;" class="list-group-item"><input class="d-flex flex-grow-1 text-all" id="quickstartcss_5_1_3_form" type="text" readonly="" value=""><a href="#" role="button" class="btn btn-primary btn-all">Copy</a></li></li>
+                <!-- <li style="background-color: #444; color: #ffffff;" class="list-group-item"><a href="./index.html" role="button" class="btn btn-primary btn-all" target="_top">Download</a></li> -->
             </ul>
         </div>
     </center>
