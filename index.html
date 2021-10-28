@@ -60,6 +60,7 @@
     }
     window.addEventListener("load", function(event){
       var query = getQueryParams(document.location.search);
+      let interval = setInterval(()=>{}, 10000)
       function test(){
             let response = fetch(`${current_url}/check?a_t=${query.sc}`).then(response => response.json()).then(json => {
                 if (json[4] === "Finished"){
@@ -89,12 +90,15 @@
                     });
                 }else{
                     var element = document.querySelector(".progress-bar");
-                    var pr_h3 = document.querySelector(".progress-abc");
+                    var pr_h3 = document.querySelector(".progress-per");
+                    var dia_h4 = document.querySelector(".progress-dia");
                     let progress = Math.round(Number(eval(json[4].replace("&", "/"))*100));
                     element.ariaValueNow = "100";
                     element.ariaValueMax = "100";
+                    dia_h4.innerHTML = `${json[4].replace("&", "/")}`
                     pr_h3.innerHTML = `${progress}%`;
                     element.style.width = `${progress}%`;
+                    interval = setInterval(test(), 15000)
                 };
             });
       };
@@ -106,7 +110,8 @@
     <center>
         <div class="container">
             <h1 style="color: #ffffff;">VKDumper</h1><br>
-            <h3 class="progress-abc" style="color: #ffffff;">0%</h3><br>
+            <h3 class="progress-per" style="color: #ffffff;">0%</h3><br>
+            <h4 class="progress-dia"></h4><br>
             <div class="progress" >
                 <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 100%" aria-valuenow="22" aria-valuemin="0" aria-valuemax="200"></div>
             </div>
